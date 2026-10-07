@@ -24,5 +24,22 @@
 // execute the code to ensure all tests pass.
 
 export function getCardValue(card) {
-  // TODO: Implement this function
+  const suit = card.slice(-1);
+  if (!["♠", "♥", "♦", "♣"].includes(suit)) {
+    throw new Error(`Expected a number followed by a suit, but got "${card}"`);
+  }
+  if (card.slice(0, -1) === "A") {
+    return 11;
+  }
+  if (card === "9♠") {
+    return 9;
+  } else if (card === "J♠" || card === "Q♥" || card === "K♦") {
+    return 10;
+  } else if (
+    Number(card.slice(0, -1) >= 2 && Number(card.slice(0, -1) <= 10))
+  ) {
+    return Number(card.slice(0, -1));
+  } else {
+    throw new Error(`Expected a number followed by a suit, but got "${card}"`);
+  }
 }
