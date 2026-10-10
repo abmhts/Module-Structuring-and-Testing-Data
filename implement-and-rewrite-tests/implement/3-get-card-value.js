@@ -24,22 +24,24 @@
 // execute the code to ensure all tests pass.
 
 export function getCardValue(card) {
+  const rank = card.slice(0, -1);
   const suit = card.slice(-1);
-  if (!["♠", "♥", "♦", "♣"].includes(suit)) {
-    throw new Error(`Expected a number followed by a suit, but got "${card}"`);
+
+  const validSuits = ["♠", "♥", "♦", "♣"];
+  const numberRanks = ["2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  const faceRanks = ["J", "Q", "K"];
+
+  if (!validSuits.includes(suit)) {
+    throw new Error(`Expected a rank followed by a suit, but got "${card}"`);
   }
-  if (card.slice(0, -1) === "A") {
+
+  if (rank === "A") {
     return 11;
-  }
-  if (card === "9♠") {
-    return 9;
-  } else if (card === "J♠" || card === "Q♥" || card === "K♦") {
+  } else if (faceRanks.includes(rank)) {
     return 10;
-  } else if (
-    Number(card.slice(0, -1) >= 2 && Number(card.slice(0, -1) <= 10))
-  ) {
-    return Number(card.slice(0, -1));
-  } else {
-    throw new Error(`Expected a number followed by a suit, but got "${card}"`);
+  } else if (numberRanks.includes(rank)) {
+    return Number(rank);
   }
+
+  throw new Error(`Expected a rank followed by a suit, but got "${card}"`);
 }
