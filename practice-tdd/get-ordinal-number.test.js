@@ -40,3 +40,21 @@ test(`Numbers ending with "th" including the special case (11,12,13)`, () => {
   expect(getOrdinalNumber(5)).toEqual("5th");
   expect(getOrdinalNumber(4)).toEqual("4th");
 });
+// Case 5: Numbers greater than 100 ending with "th"
+test(`Numbers greater than 100 ending with "th"`, () => {
+  expect(getOrdinalNumber(100)).toEqual("100th");
+  expect(getOrdinalNumber(104)).toEqual("104th");
+  expect(getOrdinalNumber(110)).toEqual("110th");
+  expect(getOrdinalNumber(255)).toEqual("255th");
+  expect(getOrdinalNumber(999)).toEqual("999th");
+  expect(getOrdinalNumber(1000)).toEqual("1000th");
+});
+// Case 6: Numbers greater than 100 with the special case (111, 112, 113)
+test(`Numbers greater than 100 ending in 11, 12, 13 use "th"`, () => {
+  expect(getOrdinalNumber(111)).toEqual("111th");
+  expect(getOrdinalNumber(112)).toEqual("112th");
+  expect(getOrdinalNumber(113)).toEqual("113th");
+  expect(getOrdinalNumber(211)).toEqual("211th");
+  expect(getOrdinalNumber(312)).toEqual("312th");
+  expect(getOrdinalNumber(1013)).toEqual("1013th");
+});
