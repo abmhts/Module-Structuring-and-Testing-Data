@@ -30,3 +30,11 @@ test("Classifies for angles outside the valid range.", () => {
   const invalid = getAngleType(361);
   assert.equal(invalid, "Invalid angle");
 });
+test("Classifies for exactly 0° (lower boundary)", () => {
+  const invalid = getAngleType(0);
+  assert.equal(invalid, "Invalid angle");
+});
+test("Classifies for exactly 360° (upper boundary)", () => {
+  const invalid = getAngleType(360);
+  assert.equal(invalid, "Invalid angle");
+});
